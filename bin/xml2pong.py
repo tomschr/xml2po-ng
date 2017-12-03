@@ -20,6 +20,8 @@
 # 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+from __future__ import print_function
+
 # xml2pong -- translate XML documents
 VERSION = "1.0.5"
 
@@ -85,7 +87,7 @@ def main(argv):
         print('Running from source folder, modifying PYTHONPATH', file=sys.stderr)
         sys.path.insert(0, name)
 
-    from xml2po import Main
+    from xml2pong import Main
 
     # Default parameters
     default_mode = 'docbook'
