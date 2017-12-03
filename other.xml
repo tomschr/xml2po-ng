@@ -1,0 +1,21 @@
+<application>
+  <component name="PyTestFrameworkService">
+    <option name="SDK_TO_PYTEST">
+      <map>
+        <entry key="$USER_HOME$/repos/GH/tomschr/leo/.env/bin/python" value="true" />
+        <entry key="$USER_HOME$/repos/GH/tomschr/xml2po-ng/.env/bin/python" value="false" />
+      </map>
+    </option>
+    <option name="SDK_TO_NOSETEST">
+      <map>
+        <entry key="$USER_HOME$/repos/GH/tomschr/leo/.env/bin/python" value="false" />
+        <entry key="$USER_HOME$/repos/GH/tomschr/xml2po-ng/.env/bin/python" value="false" />
+      </map>
+    </option>
+    <option name="SDK_TO_TRIALTEST">
+      <map>
+        <entry key="$USER_HOME$/repos/GH/tomschr/xml2po-ng/.env/bin/python" value="false" />
+      </map>
+    </option>
+  </component>
+</application>
