@@ -25,7 +25,8 @@ import re
 
 from setuptools import setup, find_packages
 
-__projectname__ = "xml2po-ng"
+__projectname__ = "xml2pong"
+__fallbackversion__ = "0.20.10"
 __programname__ = ""
 # __version__ will be read from sdsc/__init__.py
 __authors__ = "Thomas Schraitle"
@@ -73,7 +74,9 @@ def find_version(*file_paths):
                               version_file, re.M)
     if version_match:
         return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
+    # raise RuntimeError("Unable to find version string.")
+    else:
+        return __fallbackversion__
 
 
 setupdict = dict(
