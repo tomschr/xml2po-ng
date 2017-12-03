@@ -3,14 +3,14 @@
 # Copyright (c) 2004, 2005, 2006 Danilo Šegan <danilo@gnome.org>.
 # Copyright (c) 2009 Claude Paroz <claude@2xlibre.net>.
 #
-# This file is part of xml2po.
+# This file is part of xml2pong.
 #
-# xml2po is free software; you can redistribute it and/or modify
+# xml2pong is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# xml2po is distributed in the hope that it will be useful,
+# xml2pong is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -20,7 +20,7 @@
 # 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# xml2po -- translate XML documents
+# xml2pong -- translate XML documents
 VERSION = "1.0.5"
 
 # Versioning system (I use this for a long time, so lets explain it to
@@ -41,9 +41,9 @@ NULL_STRING = '/dev/null'
 if not os.path.exists('/dev/null'): NULL_STRING = 'NUL'
 
 def usage (with_help = False):
-    print >> sys.stderr, "Usage:  %s [OPTIONS] [XMLFILE]..." % (sys.argv[0])
+    print("Usage:  %s [OPTIONS] [XMLFILE]..." % (sys.argv[0]), file=sys.stderr)
     if with_help:
-        print >> sys.stderr, """
+        print("""
 OPTIONS may be some of:
     -a    --automatic-tags     Automatically decides if tags are to be considered
                                  "final" or not
@@ -72,7 +72,7 @@ EXAMPLES:
     using -p option for each XML file:
         %(command)s -p de.po chapter1.xml > chapter1.de.xml
         %(command)s -p de.po chapter2.xml > chapter2.de.xml
-""" % {'command': sys.argv[0]}
+""" % {'command': sys.argv[0]}, file=sys.stderr)
 
 
 def main(argv):
@@ -82,7 +82,7 @@ def main(argv):
 
     name = os.path.join(os.path.dirname(__file__), '..')
     if os.path.exists(os.path.join(name, 'tests')):
-        print >> sys.stderr, 'Running from source folder, modifying PYTHONPATH'
+        print('Running from source folder, modifying PYTHONPATH', file=sys.stderr)
         sys.path.insert(0, name)
 
     from xml2po import Main
@@ -142,14 +142,14 @@ def main(argv):
         elif opt in ('-o', '--output'):
             output = arg
         elif opt in ('-v', '--version'):
-            print VERSION
+            print(VERSION)
             sys.exit(0)
         elif opt in ('-h', '--help'):
             usage(True)
             sys.exit(0)
 
     if operation == 'update' and output != "-":
-        print >> sys.stderr, "Option '-o' is not yet supported when updating translations directly. Ignoring this option."
+        print("Option '-o' is not yet supported when updating translations directly. Ignoring this option.", file=sys.stderr)
 
     # Treat remaining arguments as XML files
     filenames = []
@@ -159,16 +159,16 @@ def main(argv):
     try:
         xml2po_main = Main(default_mode, operation, output, options)
     except IOError:
-        print >> sys.stderr, "Error: cannot open file %s for writing." % (output)
+        print("Error: cannot open file %s for writing." % (output), file=sys.stderr)
         sys.exit(5)
 
     if operation == 'merge':
         if len(filenames) > 1:
-            print  >> sys.stderr, "Error: You can merge translations with only one XML file at a time."
+            print("Error: You can merge translations with only one XML file at a time.", file=sys.stderr)
             sys.exit(2)
 
         if not mofile:
-            print >> sys.stderr, "Error: You must specify MO file when merging translations."
+            print("Error: You must specify MO file when merging translations.", file=sys.stderr)
             sys.exit(3)
 
         xml2po_main.merge(mofile, filenames[0])

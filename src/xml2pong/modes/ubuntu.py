@@ -2,7 +2,7 @@
 
 import libxml2
 
-from docbook import docbookXmlMode
+from .docbook import docbookXmlMode
 
 class ubuntuXmlMode (docbookXmlMode):
     """Special-casing Ubuntu DocBook website documentation."""

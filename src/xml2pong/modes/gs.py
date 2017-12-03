@@ -20,7 +20,7 @@
 # Special case Gnome Summary
 #
 
-from basic import basicXmlMode
+from .basic import basicXmlMode
 
 class gsXmlMode(basicXmlMode):
     """Abstract class for special handling of document types."""
@@ -40,7 +40,7 @@ class gsXmlMode(basicXmlMode):
             ret = self._find_salute(child)
             if ret:
                 return ret
-            child = child.next
+            child = child.__next__
         return None
 
     def postProcessXmlTranslation(self, doc, language, translators):

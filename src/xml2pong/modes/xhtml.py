@@ -21,7 +21,7 @@
 # This implements special instructions for handling XHTML documents
 # in a better way, particularly to extract some attributes in HTML tags
 
-from basic import basicXmlMode
+from .basic import basicXmlMode
 
 class xhtmlXmlMode(basicXmlMode):
     """Class for special handling of XHTML document types."""

@@ -39,7 +39,7 @@ try:
 except ImportError:
     from md5 import new as md5_new
 
-from basic import basicXmlMode
+from .basic import basicXmlMode
 
 class mallardXmlMode(basicXmlMode):
     """Class for special handling of Mallard document types."""
@@ -112,7 +112,7 @@ class mallardXmlMode(basicXmlMode):
                     hash = self._md5_for_file(fullpath)
                 else:
                     hash = "THIS FILE DOESN'T EXIST"
-                    print >>sys.stderr, "Warning: image file '%s' not found." % fullpath
+                    print("Warning: image file '%s' not found." % fullpath, file=sys.stderr)
 
                 msg.outputMessage("@@image: '%s'; md5=%s" % (attr, hash), node.lineNo(),
                                   "When image changes, this message will be marked fuzzy or untranslated for you.\n"+
@@ -121,7 +121,7 @@ class mallardXmlMode(basicXmlMode):
             child = node.children
             while child:
                 self._output_images(child,msg)
-                child = child.next
+                child = child.__next__
 
 
     def preProcessXml(self, doc, msg):
