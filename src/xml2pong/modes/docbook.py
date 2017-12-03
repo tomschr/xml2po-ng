@@ -135,7 +135,6 @@ class docbookXmlMode(basicXmlMode):
             child = node.children
             while child:
                 self._output_images(child,msg)
-                print(child, type(child))
                 child = child.next
 
 

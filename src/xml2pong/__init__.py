@@ -463,14 +463,14 @@ class XMLDocument(object):
             norm_outtxt = self.normalizeString(outtxt, self.app.isSpacePreserveNode(node))
             translation = self.app.getTranslation(norm_outtxt)
         else:
-            translation = outtxt.decode('utf-8')
+            translation = outtxt # .decode('utf-8')
 
         starttag = self.startTagForNode(node)
         endtag = self.endTagForNode(node)
 
         worth = self.worthOutputting(node)
         if not translation:
-            translation = outtxt.decode('utf-8')
+            translation = outtxt # .decode('utf-8')
             if worth and self.app.options.get('mark_untranslated'):
                 node.setLang('C')
 
@@ -503,7 +503,7 @@ class XMLDocument(object):
             # !!! This is not very nice thing to do, but I don't know if
             #     raising an exception is any better
             return False
-        return tmpstr.find('EXTERNAL_GENERAL_PARSED_ENTITY') != -1
+        return tmpstr.find(b'EXTERNAL_GENERAL_PARSED_ENTITY') != -1
 
     def doSerialize(self, node):
         """Serializes a node and its children, emitting PO messages along the way.
