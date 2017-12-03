@@ -326,7 +326,7 @@ class XMLDocument(object):
                 pass
 
             content = '<%s>%s</%s>' % (starttag, text, endtag)
-            tmp = tmp + content.encode('utf-8')
+            tmp = tmp + content # .encode('utf-8')
 
             newnode = None
             try:
@@ -338,7 +338,7 @@ class XMLDocument(object):
                 pass
 
             if not newnode:
-                print("""Error while parsing translation as XML:\n"%s"\n""" % (text.encode('utf-8')), file=sys.stderr)
+                print("""Error while parsing translation as XML:\n"%s"\n""" % text, file=sys.stderr)
                 return
 
             newelem = newnode.getRootElement()
@@ -349,6 +349,7 @@ class XMLDocument(object):
                     next = free.next
                     free.unlinkNode()
                     free = next
+
 
                 if node:
                     copy = newelem.copyNodeList()
@@ -663,7 +664,7 @@ class Main(object):
         if not text or text.strip() == '':
             return text
         if self.gt:
-            res = self.gt.ugettext(text.decode('utf-8'))
+            res = self.gt.gettext(text) # .decode('utf-8')
             return res
 
         return text
