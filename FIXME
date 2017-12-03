@@ -1,0 +1,5 @@
+This file lists things that needs to be fixed:
+
+* CLI: -o option doesn't work. Use redirection with >
+* In xml2pong/__init__.py:replaceNodeContentsWithText()
+  Can't write to node.next. However, node.addSibling(next) doesn't work :(
