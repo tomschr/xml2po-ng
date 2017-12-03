@@ -121,7 +121,7 @@ class mallardXmlMode(basicXmlMode):
             child = node.children
             while child:
                 self._output_images(child,msg)
-                child = child.__next__
+                child = child.next
 
 
     def preProcessXml(self, doc, msg):

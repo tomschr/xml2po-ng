@@ -37,12 +37,7 @@ import re
 import libxml2
 import os
 import sys
-try:
-    # Hashlib is new in Python 2.5
-    from hashlib import md5 as md5_new
-except ImportError:
-    from md5 import new as md5_new
-
+from hashlib import md5 as md5_new
 from .basic import basicXmlMode
 
 class docbookXmlMode(basicXmlMode):
@@ -95,7 +90,7 @@ class docbookXmlMode(basicXmlMode):
             ret = self._find_articleinfo(child)
             if ret:
                 return ret
-            child = child.__next__
+            child = child.next
         return None
 
     def _find_lastcopyright(self, node):
@@ -140,7 +135,8 @@ class docbookXmlMode(basicXmlMode):
             child = node.children
             while child:
                 self._output_images(child,msg)
-                child = child.__next__
+                print(child, type(child))
+                child = child.next
 
 
     def preProcessXml(self, doc, msg):
@@ -157,7 +153,7 @@ class docbookXmlMode(basicXmlMode):
         root = doc.getRootElement()
         # DocBook documents can be something other than article, handle that as well in the future
         while root and root.name != 'article' and root.name != 'book':
-            root = root.__next__
+            root = root.next
         if root and (root.name == 'article' or root.name == 'book'):
             root.setProp('lang', language)
         else:

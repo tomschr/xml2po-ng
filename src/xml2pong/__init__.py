@@ -166,7 +166,7 @@ class XMLDocument(object):
         elif node.isText():
             if node.isBlankNode():
                 if self.app.options.get('expand_entities') or \
-                  (not (node.prev and not node.prev.isBlankNode() and node.__next__ and not node.next.isBlankNode()) ):
+                  (not (node.prev and not node.prev.isBlankNode() and node.next and not node.next.isBlankNode()) ):
                     #print >>sys.stderr, "BLANK"
                     node.setContent('')
             else:
@@ -176,7 +176,7 @@ class XMLDocument(object):
             child = node.children
             while child:
                 self.normalizeNode(child)
-                child = child.__next__
+                child = child.next
 
     def normalizeString(self, text, spacepreserve = False):
         """Normalizes string to be used as key for gettext lookup.
@@ -209,7 +209,7 @@ class XMLDocument(object):
         child = newnode.children
         while child:
             result += child.serialize('utf-8')
-            child = child.__next__
+            child = child.next
 
         result = re.sub('^ ','', result)
         result = re.sub(' $','', result)
@@ -235,7 +235,7 @@ class XMLDocument(object):
         ctxt.parseDocument()
         tree = ctxt.doc()
         if next:
-            newnode = tree.children.__next__
+            newnode = tree.children.next
         else:
             newnode = tree.children
 
@@ -243,7 +243,7 @@ class XMLDocument(object):
         child = newnode.children
         while child:
             result += child.serialize('utf-8')
-            child = child.__next__
+            child = child.next
         tree.freeDoc()
         return result
 
@@ -262,7 +262,7 @@ class XMLDocument(object):
                         result += child.content.decode('utf-8')
                 else:
                     result += self.myAttributeSerialize(child)
-                child = child.__next__
+                child = child.next
         else:
             result = node.serialize('utf-8')
         return result
@@ -346,13 +346,13 @@ class XMLDocument(object):
             if newelem and newelem.children:
                 free = node.children
                 while free:
-                    next = free.__next__
+                    next = free.next
                     free.unlinkNode()
                     free = next
 
                 if node:
                     copy = newelem.copyNodeList()
-                    next = node.__next__
+                    next = node.next
                     node.replaceNode(newelem.copyNodeList())
                     node.next = next
 
@@ -378,7 +378,7 @@ class XMLDocument(object):
             if child.type in ['text'] and  child.content.strip()!='':
                 final = True
                 break
-            child = child.__next__
+            child = child.next
 
         node.__autofinal__ = final
         return final
@@ -457,7 +457,7 @@ class XMLDocument(object):
                     outtxt += '<%s>%s</%s>' % (starttag, content, endtag)
                 else:
                     outtxt += self.doSerialize(child)
-            child = child.__next__
+            child = child.next
 
         if self.app.operation == 'merge':
             norm_outtxt = self.normalizeString(outtxt, self.app.isSpacePreserveNode(node))
@@ -534,7 +534,7 @@ class XMLDocument(object):
             outtxt = ''
             while child:
                 outtxt += self.doSerialize(child)
-                child = child.__next__
+                child = child.next
             return outtxt
 
 def xml_error_handler(arg, ctxt):
@@ -555,11 +555,11 @@ class Main(object):
         elif output == '-':
             self.out = sys.stdout
         else:
-            self.out = file(output, 'w')
+            self.out = open(output, 'w')
 
     def load_mode(self, modename):
         try:
-            module = __import__('xml2po.modes.%s' % modename, globals(), locals(), ['%sXmlMode' % modename])
+            module = __import__('xml2pong.modes.%s' % modename, globals(), locals(), ['%sXmlMode' % modename])
             return getattr(module, '%sXmlMode' % modename)
         except (ImportError, AttributeError):
             if modename == 'basic':

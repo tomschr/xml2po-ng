@@ -40,7 +40,7 @@ class gsXmlMode(basicXmlMode):
             ret = self._find_salute(child)
             if ret:
                 return ret
-            child = child.__next__
+            child = child.next
         return None
 
     def postProcessXmlTranslation(self, doc, language, translators):
