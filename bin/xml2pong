@@ -84,9 +84,9 @@ def main(argv):
         sys.exit(2)
 
     name = os.path.join(os.path.dirname(__file__), '..')
-    if os.path.exists(os.path.join(name, 'tests')):
-        print('Running from source folder, modifying PYTHONPATH', file=sys.stderr)
-        sys.path.insert(0, name)
+    #if os.path.exists(os.path.join(name, 'tests')):
+    #    print('Running from source folder, modifying PYTHONPATH', file=sys.stderr)
+    #    sys.path.insert(0, name)
 
     from xml2pong import Main
 
