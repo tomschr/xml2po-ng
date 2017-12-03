@@ -20,7 +20,6 @@
 # 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from __future__ import print_function
 
 # xml2pong -- translate XML documents
 VERSION = "1.0.5"
@@ -42,8 +41,10 @@ import tempfile
 NULL_STRING = '/dev/null'
 if not os.path.exists('/dev/null'): NULL_STRING = 'NUL'
 
+PROG=os.path.basename(sys.argv[0])
+
 def usage (with_help = False):
-    print("Usage:  %s [OPTIONS] [XMLFILE]..." % (sys.argv[0]), file=sys.stderr)
+    print("Usage:  %s [OPTIONS] [XMLFILE]..." % (PROG), file=sys.stderr)
     if with_help:
         print("""
 OPTIONS may be some of:
@@ -74,7 +75,7 @@ EXAMPLES:
     using -p option for each XML file:
         %(command)s -p de.po chapter1.xml > chapter1.de.xml
         %(command)s -p de.po chapter2.xml > chapter2.de.xml
-""" % {'command': sys.argv[0]}, file=sys.stderr)
+""" % {'command': PROG}, file=sys.stderr)
 
 
 def main(argv):
