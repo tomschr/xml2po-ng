@@ -355,7 +355,11 @@ class XMLDocument(object):
                     copy = newelem.copyNodeList()
                     next = node.next
                     node.replaceNode(newelem.copyNodeList())
-                    node.next = next
+                    #print(">>> type(node)=%s " % (type(node), ),
+                    #                              file=sys.stderr)
+                    # FIXME: Replace next line with correct
+                    # node.next = next
+                    node.addSibling(next)
 
             else:
                 # In practice, this happens with tags such as "<para>    </para>" (only whitespace in between)
