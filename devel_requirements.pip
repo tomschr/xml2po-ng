@@ -5,7 +5,8 @@
 tox
 pytest
 pytest-cov
-pytest-catchlog
+# Merged into the pytest core
+# pytest-catchlog
 
 #
 flake8
