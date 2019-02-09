@@ -1,9 +1,9 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '.../server.py [http_logging]'" />
-    <option name="defaultScopeName" value="File '.../server.py [http_logging]'" />
+    <option name="customScope" value="toms-scope" />
+    <option name="defaultScopeName" value="toms-scope" />
     <option name="localCaseSensitive" value="true" />
     <option name="LOCAL_CASE_SENSITIVE_SEARCH" value="true" />
-    <option name="SEARCH_SCOPE" value="File '.../server.py [http_logging]'" />
+    <option name="SEARCH_SCOPE" value="toms-scope" />
   </component>
 </application>
