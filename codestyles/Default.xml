@@ -1,3 +1,5 @@
-<code_scheme name="Default">
+<code_scheme name="Default" version="173">
+  <option name="RIGHT_MARGIN" value="81" />
+  <option name="FORMATTER_TAGS_ENABLED" value="true" />
   <option name="ALIGN_MULTILINE_PARAMETERS_IN_CALLS" value="true" />
 </code_scheme>
