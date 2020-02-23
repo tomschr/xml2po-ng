@@ -1,9 +1,9 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '.../git2jira.py [gitlog2jira]'" />
-    <option name="defaultScopeName" value="File '.../git2jira.py [gitlog2jira]'" />
+    <option name="customScope" value="Project 'python-semver'" />
+    <option name="defaultScopeName" value="Project 'python-semver'" />
     <option name="localCaseSensitive" value="true" />
     <option name="LOCAL_CASE_SENSITIVE_SEARCH" value="true" />
-    <option name="SEARCH_SCOPE" value="File '.../git2jira.py [gitlog2jira]'" />
+    <option name="SEARCH_SCOPE" value="Project 'python-semver'" />
   </component>
 </application>
