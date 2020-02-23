@@ -8,7 +8,10 @@
   </component>
   <component name="DefaultFont">
     <option name="FONT_SIZE" value="15" />
+    <option name="FONT_FAMILY" value="Source Code Pro Medium" />
     <option name="FONT_SCALE" value="1.25" />
+    <option name="LINE_SPACING" value="1.4" />
+    <option name="SECONDARY_FONT_FAMILY" value="Droid Sans Mono" />
   </component>
   <component name="EditorSettings">
     <option name="IS_WHITESPACES_SHOWN" value="true" />
